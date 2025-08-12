@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Flux Media Creations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-teal: #14b8a6;
+            --accent-blue: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --gradient: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-10px) translateY(-10px); }
+            50% { transform: translateX(10px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(10px); }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            margin-bottom: 3rem;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .main-content {
+            margin-bottom: 4rem;
+        }
+
+        .coming-soon {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            margin-bottom: 2rem;
+        }
+
+        .coming-soon h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .tagline {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            margin-bottom: 3rem;
+        }
+
+        .tagline p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .loading-animation {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.4s forwards;
+            margin-bottom: 3rem;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gradient);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .contact-section {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.8s forwards;
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(20, 184, 166, 0.3);
+        }
+
+        .social-link i {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .coming-soon h2 {
+                font-size: 2.5rem;
+            }
+
+            .tagline p {
+                font-size: 1.1rem;
+            }
+
+            .contact-title {
+                font-size: 1.25rem;
+            }
+
+            .social-link {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.75rem;
+            }
+
+            .logo p {
+                font-size: 0.875rem;
+            }
+
+            .coming-soon h2 {
+                font-size: 2rem;
+            }
+
+            .tagline p {
+                font-size: 1rem;
+            }
+
+            .social-link {
+                padding: 0.75rem 1.25rem;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-secondary: #cccccc;
+            }
+            
+            .social-link {
+                border-color: var(--accent-teal);
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="fghf.png" alt="flux-media-creations-logo" width="150" height="150">
+            <h1>Flux Media Creations</h1>
+            <p>Creative Digital Agency</p>
+        </div>
+
+        <div class="main-content">
+            <div class="coming-soon">
+                <h2>Coming Soon</h2>
+            </div>
+
+            <div class="tagline">
+                <p>Our website is under construction. Stay tuned for something amazing!</p>
+            </div>
+
+            <div class="loading-animation">
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h3 class="contact-title">Contact Us</h3>
+            <a href="https://www.instagram.com/fluxmediacreations?igsh=MTFvdHh0OWZ1YWRvcw%3D%3D&utm_source=qr" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                <span>Follow us on Instagram</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior and enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            const animatedElements = document.querySelectorAll('.logo, .coming-soon, .tagline, .loading-animation, .contact-section');
+            animatedElements.forEach(el => observer.observe(el));
+
+            // Add click analytics (optional)
+            const socialLink = document.querySelector('.social-link');
+            socialLink.addEventListener('click', function() {
+                // You can add analytics tracking here
+                console.log('Instagram link clicked');
+            });
+
+            // Add keyboard navigation support
+            socialLink.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+
+            // Preload Instagram redirect
+            const link = document.createElement('link');
+            link.rel = 'dns-prefetch';
+            link.href = 'https://instagram.fluxmediacreations.com';
+            document.head.appendChild(link);
+        });
+
+        // Add smooth page transitions
+        window.addEventListener('beforeunload', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.3s ease-out';
+        });
+    </script>
+</body>
+</html>
